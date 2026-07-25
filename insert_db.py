@@ -79,12 +79,13 @@ def insert_data_to_db(
         INSERT INTO grades(student_id, subject_id, grade, grade_date)
         VALUES (?, ?, ?, ?)
         """
-        
+        number_grades = 0
         for _ in range(len(students)**2):
             grade = randint(0, 100)
-            if grade != 0:
+            if grade != 0 and number_grades < 20:
                 date = str(datetime(2024, randint(1,12), randint(1,28)).date())
                 cur.execute(sql_to_grades, (randint(1, len(students)), randint(1, len(subjects)), grade, date))
+                number_grades += 1
             else:    
                 cur.execute(sql_to_grades, (randint(1, len(students)), randint(1, len(subjects)), None, None))
         

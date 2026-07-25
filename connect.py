@@ -5,8 +5,8 @@ from pathlib import Path
 DATABASE = Path('study_group.db').absolute()
 
 @contextmanager
-def create_connect(db_filt: Path = DATABASE):
-    conn = sqlite3.connect(db_filt)
+def create_connect(db_file: Path = DATABASE):
+    conn = sqlite3.connect(db_file)
     try:
         yield conn
         conn.commit()

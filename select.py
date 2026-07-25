@@ -108,7 +108,7 @@ if __name__ == "__main__":
 	slect_db(select_07)
 
 	select_08 = """
-                SELECT t.fullname, s.title, ROUND(AVG(g.grade), 2) AS avg_grade
+                SELECT t.fullname, ROUND(AVG(g.grade), 2) AS avg_grade
                 FROM grades g
                 JOIN subjects s ON s.id = g.subject_id
                 JOIN teachers t ON t.id = s.teacher_id

@@ -1,14 +1,9 @@
 from pathlib import Path
 from connect import DATABASE, create_connect as connect
 
-CREATE_FOLDER = Path(__file__).parent / 'create_tables'
-CREATE_FILES = (
-		'create_1.sql',
-		'create_2.sql',
-		'create_3.sql',
-		'create_4.sql',
-		'create_5.sql',
-		)
+BASE_DIR = Path(__file__).resolve().parent
+CREATES_FOLDER = BASE_DIR / 'create_tables'
+CREATES_FILES = (item.name for item in CREATES_FOLDER.iterdir() if item.is_file())
 
 
 def create_db(path_folder: Path, create_files: tuple, path_database: Path) -> None:
@@ -23,7 +18,7 @@ def create_db(path_folder: Path, create_files: tuple, path_database: Path) -> No
 
 
 def main() -> None:
-	create_db(CREATE_FOLDER, CREATE_FILES, DATABASE)
+	create_db(CREATES_FOLDER, CREATES_FILES, DATABASE)
 
 
 if __name__ == "__main__":
